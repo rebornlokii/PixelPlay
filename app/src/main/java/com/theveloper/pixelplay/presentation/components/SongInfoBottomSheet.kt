@@ -54,6 +54,7 @@ import androidx.compose.material.icons.rounded.Person
 import androidx.compose.material.icons.rounded.PlayArrow
 import androidx.compose.material.icons.rounded.Schedule
 import androidx.compose.material.icons.rounded.Share
+import androidx.compose.material.icons.rounded.Image
 import androidx.compose.material.icons.rounded.Edit
 import androidx.compose.material.icons.rounded.Info
 import androidx.compose.material.icons.rounded.Menu
@@ -152,6 +153,7 @@ fun SongInfoBottomSheet(
     var showEditSheet by remember { mutableStateOf(false) }
     var showArtistPicker by remember { mutableStateOf(false) }
     var showTonePickerDialog by remember { mutableStateOf(false) }
+    var showShareCard by remember { mutableStateOf(false) }
     var toneConfirmationTarget by remember { mutableStateOf<ToneTarget?>(null) }
     var pendingTonePermissionSong by remember { mutableStateOf<Song?>(null) }
     var pendingTonePermissionTarget by remember { mutableStateOf<ToneTarget?>(null) }
@@ -527,6 +529,10 @@ fun SongInfoBottomSheet(
                                             evenCornerRadiusElems = evenCornerRadiusElems
                                         )
 
+                                        ShareCardActionButton(
+                                            onClick = { showShareCard = true }
+                                        )
+
                                         Row2Actions(
                                             onAddToQueue = onAddToQueue,
                                             onAddNextToQueue = onAddNextToQueue
@@ -801,6 +807,13 @@ fun SongInfoBottomSheet(
                 toneConfirmationTarget = null
                 setCurrentSongAsTone(target)
             }
+        )
+    }
+
+    if (showShareCard) {
+        ShareCardSheet(
+            song = song,
+            onDismiss = { showShareCard = false }
         )
     }
 }
@@ -1795,3 +1808,29 @@ private fun Row4Actions(
     }
 }
 
+
+@Composable
+private fun ShareCardActionButton(
+    onClick: () -> Unit
+) {
+    FilledTonalButton(
+        modifier = Modifier
+            .fillMaxWidth()
+            .heightIn(min = 56.dp),
+        colors = ButtonDefaults.filledTonalButtonColors(
+            containerColor = MaterialTheme.colorScheme.surfaceContainerHighest,
+            contentColor = MaterialTheme.colorScheme.onSurfaceVariant
+        ),
+        onClick = onClick
+    ) {
+        Icon(
+            imageVector = Icons.Rounded.Image,
+            contentDescription = null
+        )
+        Spacer(Modifier.width(10.dp))
+        Text(
+            text = stringResource(R.string.song_info_action_share_card),
+            style = MaterialTheme.typography.titleMedium
+        )
+    }
+}

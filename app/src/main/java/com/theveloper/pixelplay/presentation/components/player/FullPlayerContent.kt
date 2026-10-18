@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.res.Configuration
 import android.net.Uri
 import com.theveloper.pixelplay.data.model.Lyrics
+import com.theveloper.pixelplay.presentation.components.ShareCardSheet
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.AnimatedContent
@@ -105,7 +106,9 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.coerceAtLeast
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Cloud
+import androidx.compose.material.icons.rounded.Image
 import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderDefaults
 import androidx.compose.runtime.derivedStateOf
@@ -241,6 +244,7 @@ fun FullPlayerContent(
     var showSongInfoBottomSheet by remember { mutableStateOf(false) }
     var showLyricsSheet by remember { mutableStateOf(false) }
     var showArtistPicker by rememberSaveable { mutableStateOf(false) }
+    var showShareCardSheet by rememberSaveable { mutableStateOf(false) }
     
     val lyricsSearchUiState by playerViewModel.lyricsSearchUiState.collectAsStateWithLifecycle()
 
@@ -892,6 +896,29 @@ fun FullPlayerContent(
                                     tint = playerAccentColor
                                 )
                             }
+
+                            // Share music card Button
+                            Box(
+                                modifier = Modifier
+                                    .size(height = 42.dp, width = 50.dp)
+                                    .clip(
+                                        RoundedCornerShape(
+                                            topStart = 50.dp,
+                                            topEnd = 6.dp,
+                                            bottomStart = 50.dp,
+                                            bottomEnd = 6.dp
+                                        )
+                                    )
+                                    .background(playerOnAccentColor.copy(alpha = 0.7f))
+                                    .clickable { showShareCardSheet = true },
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Rounded.Image,
+                                    contentDescription = stringResource(R.string.player_cd_share_card),
+                                    tint = playerAccentColor
+                                )
+                            }
                         }
                     }
                 )
@@ -994,6 +1021,13 @@ fun FullPlayerContent(
                 playerViewModel.triggerArtistNavigationFromPlayer(artist.id)
                 showArtistPicker = false
             }
+        )
+    }
+
+    if (showShareCardSheet) {
+        ShareCardSheet(
+            song = song,
+            onDismiss = { showShareCardSheet = false }
         )
     }
 }
