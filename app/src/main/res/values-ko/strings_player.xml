@@ -192,4 +192,18 @@
     <string name="lyrics_artist_album_line">%1$s • %2$s</string>
     <string name="lyrics_provided_by">가사 제공:</string>
     <string name="lyrics_lrclib_uri">https://lrclib.net/</string>
+
+    <!-- Share Music Card -->
+    <string name="share_card_title">음악 카드 공유</string>
+    <string name="share_card_ratio_square">정사각형</string>
+    <string name="share_card_ratio_story">스토리</string>
+    <string name="share_card_action_share">공유</string>
+    <string name="share_card_action_save">저장</string>
+    <string name="share_card_saved">갤러리에 저장됨</string>
+    <string name="share_card_save_error">이미지를 저장할 수 없습니다</string>
+    <string name="share_card_share_error">이미지를 공유할 수 없습니다</string>
+    <string name="share_card_chooser_title">음악 카드 공유</string>
+    <string name="share_card_preview_cd">음악 카드 미리보기</string>
+    <string name="player_cd_share_card">음악 카드 공유</string>
+    <string name="song_info_action_share_card">음악 카드 공유</string>
 </resources>

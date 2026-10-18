@@ -195,4 +195,18 @@
     <string name="lyrics_artist_album_line">%1$s • %2$s</string>
     <string name="lyrics_provided_by">歌词提供者</string>
     <string name="lyrics_lrclib_uri">https://lrclib.net/</string>
+
+    <!-- Share Music Card -->
+    <string name="share_card_title">分享音乐卡片</string>
+    <string name="share_card_ratio_square">方形</string>
+    <string name="share_card_ratio_story">竖版</string>
+    <string name="share_card_action_share">分享</string>
+    <string name="share_card_action_save">保存</string>
+    <string name="share_card_saved">已保存到图库</string>
+    <string name="share_card_save_error">无法保存图片</string>
+    <string name="share_card_share_error">无法分享图片</string>
+    <string name="share_card_chooser_title">分享音乐卡片</string>
+    <string name="share_card_preview_cd">音乐卡片预览</string>
+    <string name="player_cd_share_card">分享音乐卡片</string>
+    <string name="song_info_action_share_card">分享音乐卡片</string>
 </resources>

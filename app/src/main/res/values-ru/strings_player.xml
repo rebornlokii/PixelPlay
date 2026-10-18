@@ -195,4 +195,18 @@
     <string name="lyrics_artist_album_line">%1$s • %2$s</string>
     <string name="lyrics_provided_by">Текст предоставлен</string>
     <string name="lyrics_lrclib_uri">https://lrclib.net/</string>
+
+    <!-- Share Music Card -->
+    <string name="share_card_title">Поделиться музыкальной карточкой</string>
+    <string name="share_card_ratio_square">Квадрат</string>
+    <string name="share_card_ratio_story">История</string>
+    <string name="share_card_action_share">Поделиться</string>
+    <string name="share_card_action_save">Сохранить</string>
+    <string name="share_card_saved">Сохранено в галерее</string>
+    <string name="share_card_save_error">Не удалось сохранить изображение</string>
+    <string name="share_card_share_error">Не удалось поделиться изображением</string>
+    <string name="share_card_chooser_title">Поделиться музыкальной карточкой</string>
+    <string name="share_card_preview_cd">Предпросмотр музыкальной карточки</string>
+    <string name="player_cd_share_card">Поделиться музыкальной карточкой</string>
+    <string name="song_info_action_share_card">Поделиться музыкальной карточкой</string>
 </resources>

@@ -195,4 +195,18 @@
     <string name="lyrics_artist_album_line">%1$s • %2$s</string>
     <string name="lyrics_provided_by">Testi forniti da</string>
     <string name="lyrics_lrclib_uri">https://lrclib.net/</string>
+
+    <!-- Share Music Card -->
+    <string name="share_card_title">Condividi la scheda musicale</string>
+    <string name="share_card_ratio_square">Quadrato</string>
+    <string name="share_card_ratio_story">Storia</string>
+    <string name="share_card_action_share">Condividi</string>
+    <string name="share_card_action_save">Salva</string>
+    <string name="share_card_saved">Salvato nella galleria</string>
+    <string name="share_card_save_error">Impossibile salvare l\'immagine</string>
+    <string name="share_card_share_error">Impossibile condividere l\'immagine</string>
+    <string name="share_card_chooser_title">Condividi la scheda musicale</string>
+    <string name="share_card_preview_cd">Anteprima della scheda musicale</string>
+    <string name="player_cd_share_card">Condividi la scheda musicale</string>
+    <string name="song_info_action_share_card">Condividi la scheda musicale</string>
 </resources>

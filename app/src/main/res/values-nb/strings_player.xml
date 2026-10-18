@@ -195,4 +195,18 @@
     <string name="lyrics_artist_album_line">%1$s • %2$s</string>
     <string name="lyrics_provided_by">Sangtekster levert av</string>
     <string name="lyrics_lrclib_uri">https://lrclib.net/</string>
+
+    <!-- Share Music Card -->
+    <string name="share_card_title">Del musikkort</string>
+    <string name="share_card_ratio_square">Kvadrat</string>
+    <string name="share_card_ratio_story">Story</string>
+    <string name="share_card_action_share">Del</string>
+    <string name="share_card_action_save">Lagre</string>
+    <string name="share_card_saved">Lagret i galleriet</string>
+    <string name="share_card_save_error">Kunne ikke lagre bildet</string>
+    <string name="share_card_share_error">Kunne ikke dele bildet</string>
+    <string name="share_card_chooser_title">Del musikkort</string>
+    <string name="share_card_preview_cd">Forhåndsvisning av musikkort</string>
+    <string name="player_cd_share_card">Del musikkort</string>
+    <string name="song_info_action_share_card">Del musikkort</string>
 </resources>

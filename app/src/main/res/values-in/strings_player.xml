@@ -195,4 +195,18 @@
     <string name="lyrics_artist_album_line">%1$s • %2$s</string>
     <string name="lyrics_provided_by">Lirik disediakan oleh</string>
     <string name="lyrics_lrclib_uri">https://lrclib.net/</string>
+
+    <!-- Share Music Card -->
+    <string name="share_card_title">Bagikan kartu musik</string>
+    <string name="share_card_ratio_square">Persegi</string>
+    <string name="share_card_ratio_story">Cerita</string>
+    <string name="share_card_action_share">Bagikan</string>
+    <string name="share_card_action_save">Simpan</string>
+    <string name="share_card_saved">Disimpan ke galeri</string>
+    <string name="share_card_save_error">Tidak dapat menyimpan gambar</string>
+    <string name="share_card_share_error">Tidak dapat membagikan gambar</string>
+    <string name="share_card_chooser_title">Bagikan kartu musik</string>
+    <string name="share_card_preview_cd">Pratinjau kartu musik</string>
+    <string name="player_cd_share_card">Bagikan kartu musik</string>
+    <string name="song_info_action_share_card">Bagikan kartu musik</string>
 </resources>
