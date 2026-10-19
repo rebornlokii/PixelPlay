@@ -278,6 +278,7 @@ fun ShareCardSheet(
  * `ColumnScope` one, which cannot be called with an implicit receiver from inside the preview
  * `Box`.
  */
+@OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 private fun ShareCardRenderingBadge(visible: Boolean, modifier: Modifier = Modifier) {
     AnimatedVisibility(
