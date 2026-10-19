@@ -54,7 +54,6 @@ import androidx.compose.material.icons.rounded.Person
 import androidx.compose.material.icons.rounded.PlayArrow
 import androidx.compose.material.icons.rounded.Schedule
 import androidx.compose.material.icons.rounded.Share
-import androidx.compose.material.icons.rounded.IosShare
 import androidx.compose.material.icons.rounded.Edit
 import androidx.compose.material.icons.rounded.Info
 import androidx.compose.material.icons.rounded.Menu
@@ -1826,7 +1825,7 @@ private fun ShareCardActionButton(
         onClick = onClick
     ) {
         Icon(
-            imageVector = Icons.Rounded.IosShare,
+            imageVector = Icons.Rounded.Share,
             contentDescription = stringResource(R.string.song_info_action_share_card)
         )
         Spacer(Modifier.width(6.dp))

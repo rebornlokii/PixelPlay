@@ -15,6 +15,7 @@ import android.text.StaticLayout
 import android.text.TextPaint
 import android.text.TextUtils
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import coil.imageLoader
 import coil.request.ImageRequest
 import com.theveloper.pixelplay.R
@@ -89,16 +90,18 @@ object ShareCardRenderer {
         val padding = width * 0.075f
         val textWidth = (width - padding * 2f).toInt()
 
-        val titlePaint = TextPaint(Paint.ANTI_ALIAS_FLAG).apply {
-            color = Color.WHITE
+        val titlePaint = brandTextPaint(
+            context = context,
+            weight = TITLE_WEIGHT,
+            color = Color.WHITE,
             textSize = width * 0.077f
-            typeface = brandTypeface(context, TITLE_WEIGHT)
-        }
-        val artistPaint = TextPaint(Paint.ANTI_ALIAS_FLAG).apply {
-            color = Color.argb(225, 255, 255, 255)
+        )
+        val artistPaint = brandTextPaint(
+            context = context,
+            weight = ARTIST_WEIGHT,
+            color = Color.argb(225, 255, 255, 255),
             textSize = width * 0.045f
-            typeface = brandTypeface(context, ARTIST_WEIGHT)
-        }
+        )
 
         val titleLayout = buildTextLayout(song.title, titlePaint, textWidth, maxLines = 2)
         val artistLayout = buildTextLayout(song.displayArtist, artistPaint, textWidth, maxLines = 1)
@@ -126,10 +129,12 @@ object ShareCardRenderer {
     private fun drawBranding(context: Context, canvas: Canvas, padding: Float) {
         val logoSize = (padding * 1.35f).toInt().coerceAtLeast(1)
         val logo = loadLogo(context, logoSize)
-        val wordmarkPaint = TextPaint(Paint.ANTI_ALIAS_FLAG).apply {
-            color = Color.argb(235, 255, 255, 255)
+        val wordmarkPaint = brandTextPaint(
+            context = context,
+            weight = WORDMARK_WEIGHT,
+            color = Color.argb(235, 255, 255, 255),
             textSize = padding * 0.62f
-            typeface = brandTypeface(context, WORDMARK_WEIGHT)
+        ).apply {
             letterSpacing = 0.02f
         }
         val metrics = wordmarkPaint.fontMetrics
@@ -206,19 +211,32 @@ object ShareCardRenderer {
 
     /**
      * Google Sans Rounded — the app's typeface — applied to a canvas [TextPaint]. The app
-     * bundles Google Sans Flex and selects the rounded axis via a font variation, so we
-     * reproduce the exact same instance here for the generated card.
+     * bundles Google Sans Flex and selects the rounded axis through a font variation
+     * (`GoogleSansRounded` in the theme), so we reproduce the exact same instance here.
+     *
+     * The variation is set on the paint rather than the typeface because `Typeface.Builder`
+     * has no public constructor that accepts a `res/font` resource id.
      */
-    @Suppress("DEPRECATION")
-    private fun brandTypeface(context: Context, weight: Int): Typeface {
+    private fun brandTextPaint(
+        context: Context,
+        weight: Int,
+        color: Int,
+        textSize: Float
+    ): TextPaint {
+        return TextPaint(Paint.ANTI_ALIAS_FLAG).apply {
+            this.color = color
+            this.textSize = textSize
+            typeface = brandTypeface(context)
+            runCatching {
+                fontVariationSettings = "'wght' $weight, 'ROND' $ROUNDED_AXIS"
+            }
+        }
+    }
+
+    private fun brandTypeface(context: Context): Typeface {
         return runCatching {
-            Typeface.Builder(context.resources, R.font.gflex_variable)
-                .setFontVariationSettings("'wght' $weight, 'ROND' $ROUNDED_AXIS")
-                .build()
-        }.getOrNull() ?: Typeface.create(
-            "sans-serif",
-            if (weight >= 600) Typeface.BOLD else Typeface.NORMAL
-        )
+            ResourcesCompat.getFont(context, R.font.gflex_variable)
+        }.getOrNull() ?: Typeface.create("sans-serif", Typeface.NORMAL)
     }
 
     private fun loadLogo(context: Context, sizePx: Int): Bitmap? {

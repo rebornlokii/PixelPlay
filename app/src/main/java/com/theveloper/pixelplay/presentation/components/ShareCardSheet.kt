@@ -191,14 +191,10 @@ fun ShareCardSheet(
                     }
                 }
 
-                AnimatedVisibility(
+                ShareCardRenderingBadge(
                     visible = isRendering && cardBitmap != null,
-                    enter = fadeIn(tween(150)),
-                    exit = fadeOut(tween(220)),
                     modifier = Modifier.align(Alignment.TopEnd)
-                ) {
-                    LoadingIndicator(modifier = Modifier.size(22.dp))
-                }
+                )
             }
 
             Row(
@@ -273,5 +269,23 @@ fun ShareCardSheet(
                 }
             }
         }
+    }
+}
+
+/**
+ * Small badge that fades in while a fresh card bitmap is being rendered. It lives in its own
+ * composable so [AnimatedVisibility] resolves to the plain overload instead of the
+ * `ColumnScope` one, which cannot be called with an implicit receiver from inside the preview
+ * `Box`.
+ */
+@Composable
+private fun ShareCardRenderingBadge(visible: Boolean, modifier: Modifier = Modifier) {
+    AnimatedVisibility(
+        visible = visible,
+        enter = fadeIn(tween(150)),
+        exit = fadeOut(tween(220)),
+        modifier = modifier
+    ) {
+        LoadingIndicator(modifier = Modifier.size(22.dp))
     }
 }
