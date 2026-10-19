@@ -42,6 +42,14 @@ object ShareCardRenderer {
     private const val OUTPUT_WIDTH = 1080
     private const val BRAND_NAME = "PixelPlayer"
 
+    // Google Sans Flex weight axis values used for the card typography.
+    private const val TITLE_WEIGHT = 700
+    private const val ARTIST_WEIGHT = 500
+    private const val WORDMARK_WEIGHT = 500
+
+    // Rounded axis value used across the app's Google Sans Rounded family.
+    private const val ROUNDED_AXIS = 100
+
     suspend fun render(context: Context, song: Song, aspect: ShareCardAspect): Bitmap {
         val width = OUTPUT_WIDTH
         val height = (OUTPUT_WIDTH * aspect.heightRatio / aspect.widthRatio).toInt()
@@ -84,12 +92,12 @@ object ShareCardRenderer {
         val titlePaint = TextPaint(Paint.ANTI_ALIAS_FLAG).apply {
             color = Color.WHITE
             textSize = width * 0.077f
-            typeface = Typeface.create("sans-serif", Typeface.BOLD)
+            typeface = brandTypeface(context, TITLE_WEIGHT)
         }
         val artistPaint = TextPaint(Paint.ANTI_ALIAS_FLAG).apply {
             color = Color.argb(225, 255, 255, 255)
             textSize = width * 0.045f
-            typeface = Typeface.create("sans-serif", Typeface.NORMAL)
+            typeface = brandTypeface(context, ARTIST_WEIGHT)
         }
 
         val titleLayout = buildTextLayout(song.title, titlePaint, textWidth, maxLines = 2)
@@ -121,7 +129,7 @@ object ShareCardRenderer {
         val wordmarkPaint = TextPaint(Paint.ANTI_ALIAS_FLAG).apply {
             color = Color.argb(235, 255, 255, 255)
             textSize = padding * 0.62f
-            typeface = Typeface.create("sans-serif-medium", Typeface.NORMAL)
+            typeface = brandTypeface(context, WORDMARK_WEIGHT)
             letterSpacing = 0.02f
         }
         val metrics = wordmarkPaint.fontMetrics
@@ -194,6 +202,23 @@ object ShareCardRenderer {
                 bitmap
             }
         }.getOrNull()
+    }
+
+    /**
+     * Google Sans Rounded — the app's typeface — applied to a canvas [TextPaint]. The app
+     * bundles Google Sans Flex and selects the rounded axis via a font variation, so we
+     * reproduce the exact same instance here for the generated card.
+     */
+    @Suppress("DEPRECATION")
+    private fun brandTypeface(context: Context, weight: Int): Typeface {
+        return runCatching {
+            Typeface.Builder(context.resources, R.font.gflex_variable)
+                .setFontVariationSettings("'wght' $weight, 'ROND' $ROUNDED_AXIS")
+                .build()
+        }.getOrNull() ?: Typeface.create(
+            "sans-serif",
+            if (weight >= 600) Typeface.BOLD else Typeface.NORMAL
+        )
     }
 
     private fun loadLogo(context: Context, sizePx: Int): Bitmap? {

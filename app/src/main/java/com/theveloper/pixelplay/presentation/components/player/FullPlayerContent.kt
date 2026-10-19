@@ -108,7 +108,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Cloud
-import androidx.compose.material.icons.rounded.Image
+import androidx.compose.material.icons.rounded.IosShare
 import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderDefaults
 import androidx.compose.runtime.derivedStateOf
@@ -914,7 +914,7 @@ fun FullPlayerContent(
                                 contentAlignment = Alignment.Center
                             ) {
                                 Icon(
-                                    imageVector = Icons.Rounded.Image,
+                                    imageVector = Icons.Rounded.IosShare,
                                     contentDescription = stringResource(R.string.player_cd_share_card),
                                     tint = playerAccentColor
                                 )

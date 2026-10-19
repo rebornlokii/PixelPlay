@@ -54,7 +54,7 @@ import androidx.compose.material.icons.rounded.Person
 import androidx.compose.material.icons.rounded.PlayArrow
 import androidx.compose.material.icons.rounded.Schedule
 import androidx.compose.material.icons.rounded.Share
-import androidx.compose.material.icons.rounded.Image
+import androidx.compose.material.icons.rounded.IosShare
 import androidx.compose.material.icons.rounded.Edit
 import androidx.compose.material.icons.rounded.Info
 import androidx.compose.material.icons.rounded.Menu
@@ -1816,21 +1816,26 @@ private fun ShareCardActionButton(
     FilledTonalButton(
         modifier = Modifier
             .fillMaxWidth()
-            .heightIn(min = 56.dp),
+            .heightIn(min = 66.dp),
         colors = ButtonDefaults.filledTonalButtonColors(
-            containerColor = MaterialTheme.colorScheme.surfaceContainerHighest,
-            contentColor = MaterialTheme.colorScheme.onSurfaceVariant
+            containerColor = MaterialTheme.colorScheme.tertiaryContainer,
+            contentColor = MaterialTheme.colorScheme.onTertiaryContainer
         ),
+        contentPadding = PaddingValues(horizontal = 10.dp),
+        shape = CircleShape,
         onClick = onClick
     ) {
         Icon(
-            imageVector = Icons.Rounded.Image,
-            contentDescription = null
+            imageVector = Icons.Rounded.IosShare,
+            contentDescription = stringResource(R.string.song_info_action_share_card)
         )
-        Spacer(Modifier.width(10.dp))
-        Text(
+        Spacer(Modifier.width(6.dp))
+        TightWrapText(
             text = stringResource(R.string.song_info_action_share_card),
-            style = MaterialTheme.typography.titleMedium
+            modifier = Modifier.padding(end = 4.dp),
+            overflow = TextOverflow.Ellipsis,
+            maxLines = 2,
+            lineHeight = 20.sp
         )
     }
 }
